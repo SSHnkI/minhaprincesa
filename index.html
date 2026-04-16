@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>❤️ Mensagem pra Mila</title>
+    <title>❤️ Mensagem pra princesa</title>
     <!-- Ícone de Coração na Aba -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -110,32 +110,33 @@
     <!-- Tela de Bloqueio (Aniversário) -->
     <div id="auth-card" class="glass-card">
         <h1>Para o meu amor...</h1>
-        <p class="text-rose-600 mb-4">Para acessar sua mensagem, você precisa provar que me conhece bem!</p>
-        <p class="font-medium">Qual a data do meu aniversário?</p>
+        <p class="text-rose-600 mb-4"></p>
+        <p class="font-medium">Dia do nosso primeiro beijo</p>
         <input type="date" id="birthdate-input">
         <p id="error-msg" class="error-msg">Ops! Essa data não está certa, tente de novo meu amor ❤️</p>
-        <button onclick="checkDate()">Entrar no nosso mundo</button>
+        <button onclick="checkDate()">Entrar</button>
     </div>
 
     <!-- Conteúdo Principal (Mensagem) -->
     <div id="index1" class="glass-card hidden-content">
-        <h1>Oi Mila, minha vida! ❤️</h1>
+        <h1>Oi mor, minha vida! ❤️</h1>
         <div class="text-rose-700 space-y-4 text-lg leading-relaxed text-left">
-            <p>Sabe, desde aquele primeiro dia que a gente começou a conversar, meu coração já sentiu algo diferente. Como eu te disse uma vez: <i>"cada foto que eu vejo sua meu coração palpita"</i>. E não é conversa de quem tem "lábia", é a mais pura verdade!</p>
+            <p>Sabe, desde aquele primeiro dia que a gente começou a conversar, meu coração já sentiu algo diferente. Como eu te disse uma vez: <i>"cada foto que eu vejo sua meu coração palpita"</i>. Não era lábia meu bem, foi simplesmente sinceridade! Você é linda, espetacular, e não digo somente sobre seu corpo(uma grande gostosa), mas seu jeitinho, a forma como vc lida comigo, isso me encanta, cada vez mais e mais e mais. Eu me sinto tão bem, eu sinto que sou dono do mundo quando recebo uma mensagem sua, um beijinho no rosto, um carinho. </p>
             
-            <p>Eu amo o jeito que a gente ri de tudo, até das coisas aleatórias como o <b>Glebson</b> indo na loja (coitado dele! kkk). Você é a pessoa que traz luz pros meus dias, seja conversando sobre louvores bonitos ou apenas jogando conversa fora.</p>
+            <p>Eu amo o nosso jeito, um pouquinho de vergonha, um pouquinho de safadeza.  Você tem trago cor pros meus dias, seja conversando , seja se amando, seja lembrando de vc, lembrando dos nossos momentos, dos nossos beijos, abraços.</p>
             
-            <p>Obrigado por ser essa mulher incrível. Eu te amo muito e quero que saiba que cada detalhe nosso é guardado com muito carinho aqui dentro.</p>
+            <p>Obrigado por ser essa mulher incrível, você é demais meu bem. Eu te procurei por tanto tempo meu bem, to tão feliz de ter te encontrado cedo e poder viver toda a vida com você. Provar coisas, viajar, compartilhar a vida, me conforta sabendo que terei seus beijos e abraços e carinhos. 
+                Eu te amo muito e quero que saiba que cada detalhe nosso é guardado com muito carinho aqui dentro ❤️.</p>
             
-            <p class="text-center font-bold mt-6">Com todo o amor do mundo,<br>Seu Victor 🤍</p>
+            <p class="text-center font-bold mt-6">Com todo o amor do mundo,<br>Seu Victor (só seu ok)🤍</p>
         </div>
-        <button onclick="createExplosion()" class="mt-4">Espalhar mais amor! ✨</button>
+        <button onclick="createExplosion()" class="mt-4">Mais amor! ✨</button>
     </div>
 
     <script>
         // Configuração do seu aniversário (Ano não importa muito aqui, mas dia e mês sim)
         // Ajuste aqui se a data estiver diferente (Formato: AAAA-MM-DD)
-        const MY_BIRTHDAY = "1998-05-15"; // Exemplo: 15 de Maio
+        const MY_BIRTHDAY = "2026-04-03"; // Exemplo: 15 de Maio
 
         function createHeart() {
             const heart = document.createElement('div');
