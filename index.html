@@ -44,8 +44,21 @@
             text-align: center;
             z-index: 10;
             max-width: 90%;
-            width: 400px;
+            width: 450px;
+            max-height: 85vh; /* Evita que saia da tela */
+            overflow-y: auto; /* Permite rolar se o texto for grande */
             transition: all 0.5s ease;
+            scrollbar-width: thin;
+            scrollbar-color: #fb7185 transparent;
+        }
+
+        /* Estilo da barra de rolagem para Chrome/Safari */
+        .glass-card::-webkit-scrollbar {
+            width: 6px;
+        }
+        .glass-card::-webkit-scrollbar-thumb {
+            background-color: #fb7185;
+            border-radius: 10px;
         }
 
         h1 {
@@ -78,6 +91,7 @@
             width: 100%;
             margin-top: 10px;
             outline: none;
+            background: white;
         }
 
         button {
@@ -88,6 +102,7 @@
             margin-top: 15px;
             cursor: pointer;
             transition: background 0.3s;
+            font-weight: bold;
         }
 
         button:hover {
@@ -110,7 +125,7 @@
     <!-- Tela de Bloqueio (Aniversário) -->
     <div id="auth-card" class="glass-card">
         <h1>Para o meu amor...</h1>
-        <p class="text-rose-600 mb-4"></p>
+        <p class="text-rose-600 mb-4">Prove que você lembra dos nossos momentos ❤️</p>
         <p class="font-medium">Dia do nosso primeiro beijo</p>
         <input type="date" id="birthdate-input">
         <p id="error-msg" class="error-msg">Ops! Essa data não está certa, tente de novo meu amor ❤️</p>
@@ -121,22 +136,24 @@
     <div id="index1" class="glass-card hidden-content">
         <h1>Oi mor, minha vida! ❤️</h1>
         <div class="text-rose-700 space-y-4 text-lg leading-relaxed text-left">
-            <p>Sabe, desde aquele primeiro dia que a gente começou a conversar, meu coração já sentiu algo diferente. Como eu te disse uma vez: <i>"cada foto que eu vejo sua meu coração palpita"</i>. Não era lábia meu bem, foi simplesmente sinceridade! Você é linda, espetacular, e não digo somente sobre seu corpo(uma grande gostosa), mas seu jeitinho, a forma como vc lida comigo, isso me encanta, cada vez mais e mais e mais. Eu me sinto tão bem, eu sinto que sou dono do mundo quando recebo uma mensagem sua, um beijinho no rosto, um carinho. </p>
+            <p>Sabe, desde aquele primeiro dia que a gente começou a conversar, meu coração já sentiu algo diferente. Como eu te disse uma vez: <i>"cada foto que eu vejo sua meu coração palpita"</i>.</p>
             
-            <p>Eu amo o nosso jeito, um pouquinho de vergonha, um pouquinho de safadeza.  Você tem trago cor pros meus dias, seja conversando , seja se amando, seja lembrando de vc, lembrando dos nossos momentos, dos nossos beijos, abraços.</p>
+            <p>Não era lábia meu bem, foi simplesmente sinceridade! Você é linda, espetacular, e não digo somente sobre seu corpo (uma grande gostosa), mas seu jeitinho, a forma como você lida comigo, isso me encanta, cada vez mais e mais e mais. Eu me sinto tão bem, eu sinto que sou dono do mundo quando recebo uma mensagem sua, um beijinho no rosto, um carinho.</p>
             
-            <p>Obrigado por ser essa mulher incrível, você é demais meu bem. Eu te procurei por tanto tempo meu bem, to tão feliz de ter te encontrado cedo e poder viver toda a vida com você. Provar coisas, viajar, compartilhar a vida, me conforta sabendo que terei seus beijos e abraços e carinhos. 
-                Eu te amo muito e quero que saiba que cada detalhe nosso é guardado com muito carinho aqui dentro ❤️.</p>
+            <p>Eu amo o nosso jeito, um pouquinho de vergonha, um pouquinho de safadeza. Você tem trazido cor para os meus dias, seja conversando, seja se amando, seja lembrando de você, lembrando dos nossos momentos, dos nossos beijos, abraços.</p>
             
-            <p class="text-center font-bold mt-6">Com todo o amor do mundo,<br>Seu Victor (só seu ok)🤍</p>
+            <p>Obrigado por ser essa mulher incrível, você é demais meu bem. Eu te procurei por tanto tempo meu bem, estou tão feliz de ter te encontrado cedo e poder viver toda a vida com você. Provar coisas, viajar, compartilhar a vida, me conforta sabendo que terei seus beijos e abraços e carinhos.</p>
+
+            <p>Eu te amo muito e quero que saiba que cada detalhe nosso é guardado com muito carinho aqui dentro ❤️.</p>
+            
+            <p class="text-center font-bold mt-6">Com todo o amor do mundo,<br>Seu Victor (só seu ok) 🤍</p>
         </div>
         <button onclick="createExplosion()" class="mt-4">Mais amor! ✨</button>
     </div>
 
     <script>
-        // Configuração do seu aniversário (Ano não importa muito aqui, mas dia e mês sim)
-        // Ajuste aqui se a data estiver diferente (Formato: AAAA-MM-DD)
-        const MY_BIRTHDAY = "2026-04-03"; // Exemplo: 15 de Maio
+        // Data mantida conforme solicitado: 03/04
+        const TARGET_DATE = "2026-04-03"; 
 
         function createHeart() {
             const heart = document.createElement('div');
@@ -160,13 +177,12 @@
             const inputDate = document.getElementById('birthdate-input').value;
             const error = document.getElementById('error-msg');
             
-            // Verificamos apenas mês e dia para facilitar
             if (inputDate) {
                 const dateParts = inputDate.split('-');
-                const birthdayParts = MY_BIRTHDAY.split('-');
+                const targetParts = TARGET_DATE.split('-');
                 
-                // Comparando Mês e Dia (Independente do ano inserido)
-                if (dateParts[1] === birthdayParts[1] && dateParts[2] === birthdayParts[2]) {
+                // Valida Mês e Dia (Independente do ano)
+                if (dateParts[1] === targetParts[1] && dateParts[2] === targetParts[2]) {
                     document.getElementById('auth-card').classList.add('hidden-content');
                     setTimeout(() => {
                         document.getElementById('auth-card').style.display = 'none';
@@ -174,7 +190,6 @@
                     }, 500);
                 } else {
                     error.style.display = 'block';
-                    // Tremer o card se errar
                     const card = document.getElementById('auth-card');
                     card.style.transform = 'translateX(10px)';
                     setTimeout(() => card.style.transform = 'translateX(-10px)', 100);
