@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤️ Mensagem pra Mila</title>
+    <!-- Ícone de Coração na Aba -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap');
+
+        body {
+            background-color: #ffe4e6; /* Rosa clarinho */
+            overflow: hidden;
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .heart {
+            position: absolute;
+            color: #fb7185;
+            font-size: 20px;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(251, 113, 133, 0.2);
+            padding: 2rem;
+            text-align: center;
+            z-index: 10;
+            max-width: 90%;
+            width: 400px;
+            transition: all 0.5s ease;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #e11d48;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hidden-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .show {
+            display: block !important;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        input {
+            border: 2px solid #fb7185;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            margin-top: 10px;
+            outline: none;
+        }
+
+        button {
+            background-color: #fb7185;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #e11d48;
+        }
+
+        .error-msg {
+            color: #e11d48;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Corações caindo -->
+    <div id="hearts-container"></div>
+
+    <!-- Tela de Bloqueio (Aniversário) -->
+    <div id="auth-card" class="glass-card">
+        <h1>Para o meu amor...</h1>
+        <p class="text-rose-600 mb-4">Para acessar sua mensagem, você precisa provar que me conhece bem!</p>
+        <p class="font-medium">Qual a data do meu aniversário?</p>
+        <input type="date" id="birthdate-input">
+        <p id="error-msg" class="error-msg">Ops! Essa data não está certa, tente de novo meu amor ❤️</p>
+        <button onclick="checkDate()">Entrar no nosso mundo</button>
+    </div>
+
+    <!-- Conteúdo Principal (Mensagem) -->
+    <div id="index1" class="glass-card hidden-content">
+        <h1>Oi Mila, minha vida! ❤️</h1>
+        <div class="text-rose-700 space-y-4 text-lg leading-relaxed text-left">
+            <p>Sabe, desde aquele primeiro dia que a gente começou a conversar, meu coração já sentiu algo diferente. Como eu te disse uma vez: <i>"cada foto que eu vejo sua meu coração palpita"</i>. E não é conversa de quem tem "lábia", é a mais pura verdade!</p>
+            
+            <p>Eu amo o jeito que a gente ri de tudo, até das coisas aleatórias como o <b>Glebson</b> indo na loja (coitado dele! kkk). Você é a pessoa que traz luz pros meus dias, seja conversando sobre louvores bonitos ou apenas jogando conversa fora.</p>
+            
+            <p>Obrigado por ser essa mulher incrível. Eu te amo muito e quero que saiba que cada detalhe nosso é guardado com muito carinho aqui dentro.</p>
+            
+            <p class="text-center font-bold mt-6">Com todo o amor do mundo,<br>Seu Victor 🤍</p>
+        </div>
+        <button onclick="createExplosion()" class="mt-4">Espalhar mais amor! ✨</button>
+    </div>
+
+    <script>
+        // Configuração do seu aniversário (Ano não importa muito aqui, mas dia e mês sim)
+        // Ajuste aqui se a data estiver diferente (Formato: AAAA-MM-DD)
+        const MY_BIRTHDAY = "1998-05-15"; // Exemplo: 15 de Maio
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            heart.style.opacity = Math.random();
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            
+            document.getElementById('hearts-container').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+
+        function checkDate() {
+            const inputDate = document.getElementById('birthdate-input').value;
+            const error = document.getElementById('error-msg');
+            
+            // Verificamos apenas mês e dia para facilitar
+            if (inputDate) {
+                const dateParts = inputDate.split('-');
+                const birthdayParts = MY_BIRTHDAY.split('-');
+                
+                // Comparando Mês e Dia (Independente do ano inserido)
+                if (dateParts[1] === birthdayParts[1] && dateParts[2] === birthdayParts[2]) {
+                    document.getElementById('auth-card').classList.add('hidden-content');
+                    setTimeout(() => {
+                        document.getElementById('auth-card').style.display = 'none';
+                        document.getElementById('index1').classList.add('show');
+                    }, 500);
+                } else {
+                    error.style.display = 'block';
+                    // Tremer o card se errar
+                    const card = document.getElementById('auth-card');
+                    card.style.transform = 'translateX(10px)';
+                    setTimeout(() => card.style.transform = 'translateX(-10px)', 100);
+                    setTimeout(() => card.style.transform = 'translateX(0)', 200);
+                }
+            }
+        }
+
+        function createExplosion() {
+            for(let i = 0; i < 20; i++) {
+                setTimeout(createHeart, i * 50);
+            }
+        }
+    </script>
+</body>
+</html>
